@@ -1,0 +1,29 @@
+<main class="form-signin my-5" style="max-width: 400px;">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <h1 class="h3 mb-3 fw-normal">ログイン</h1>
+    <!-- Email入力 -->
+    <div class="mb-3">
+      <%= f.label :email, 'Emailアドレス', class: 'form-label' %>
+      <%= f.email_field :email, autocomplete: "email", class: 'form-control', placeholder: 'Emailアドレスをいれてください' %>
+    </div>
+    <!-- パスワード入力 -->
+    <div class="mb-3">
+      <%= f.label :password, 'パスワード', class: 'form-label' %>
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', placeholder: 'パスワードをいれてください' %>
+    </div>
+    <% if devise_mapping.rememberable? %>
+      <div class="mb-3 form-check">
+        <%= f.check_box :remember_me, class: 'form-check-input' %>
+        <%= f.label :remember_me, class: 'form-check-label' do %><ruby>次回<rt>じかい</rt></ruby>から<ruby>自動的<rt>じどうてき</rt></ruby>にログインする<% end %>
+      </div>
+    <% end %>
+    <%= f.submit "ログイン", class: 'btn btn-secondary' %>
+  <% end %>
+  <div class="text-center my-5">
+    <%= link_to new_user_password_path, class: 'link-secondary'  do %>
+      パスワードをお<ruby>忘<rt>わす</rt></ruby>れの<ruby>場合<rt>ばあい</rt></ruby>
+    <% end %>
+    <hr>
+    <%= link_to 'サインアップ', signup_path, class: 'link-secondary' %>
+  </div>
+</main>

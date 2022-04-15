@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>コミュニケーションアプリ</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <%= link_to root_path, class: 'navbar-brand', :style => "text-align:center; font-weight: bold;" do %>
+          コミュニケーション<br>アプリ
+        <% end %>
+        <!--<a class="navbar-brand" href="top.html"-->
+        <!--style="text-align:center; font-weight: bold;">コミュニケーション<br>アプリ</a>-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <!-- user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <a class="nav-link">
+                  <button type="button" class="btn btn-outline-secondary">ユーザ</button>
+                </a>
+              </li>
+              <li class="nav-item">
+                <%= link_to logout_path, class: 'nav-link', method: :delete do %>
+                  <button type="button" class="btn btn-outline-secondary">サインアウト</button>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to login_path, class: 'nav-link' do %>
+                  <button type="button" class="btn btn-outline-secondary">サインイン</button>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to signup_path, class: 'nav-link' do %>
+                  <button type="button" class="btn btn-outline-secondary">サインアップ</button>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="mb-5">
+      <% if notice %><p class="alert alert-warning"><%= notice %></div><% end %>
+      <% if alert %><p class="alert alert-danger"><%= alert %></p><% end %>
+      <%= yield %>
+    </main>
+    <!-- フッター -->
+   <footer>
+    <p class="footer-text">&copy; 2022 <ruby>山本<rt>やまもと</rt></ruby><ruby>佳奈<rt>かな</rt></ruby> All Rights Reserved.</p>
+   </footer>
+  </body>
+</html>

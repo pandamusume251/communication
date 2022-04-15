@@ -1,0 +1,61 @@
+<main class="form-signin my-5" style="max-width: 400px;">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <h1 class="h3 mb-3 fw-normal">サインアップ</h1>
+    <!-- お名前入力 -->
+    <div class="mb-3">
+      <%= f.label :name, class: 'form-label' do %>お<ruby>名前<rt>なまえ</rt></ruby><% end %>
+      <span class="badge bg-danger"><ruby>必須<rt>ひっす</rt></ruby></span>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control', placeholder: "なまえをいれてください" %>
+      <% if resource.errors.messages[:name].present? %>
+        <span class="form-error-message">
+          <strong><%= resource.errors.full_messages_for(:name).first %></strong>
+        </span>
+      <% end %>
+    </div>
+    <!-- 性別入力 -->
+    <div class="mb-3">
+      <%= f.label :gender, class: 'form-label' do %><ruby>性別<rt>せいべつ</rt></ruby><% end %>
+      <span class="badge bg-danger"><ruby>必須<rt>ひっす</rt></ruby></span>
+      <%= f.select :gender, {'おとこ': 1, 'おんな': 2}, {include_blank: 'せいべつをえらんでください'}, class: 'form-select' %>
+      <% if resource.errors.messages[:gender].present? %>
+        <span class="form-error-message">
+          <strong><%= resource.errors.full_messages_for(:gender).first %></strong>
+        </span>
+      <% end %>
+    </div>
+    <!-- Emailアドレス入力 -->
+    <div class="mb-3">
+      <%= f.label :email, 'Emailアドレス', class: 'form-label' %>
+      <span class="badge bg-danger"><ruby>必須<rt>ひっす</rt></ruby></span>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "Emailアドレスをいれてください" %>
+      <% if resource.errors.messages[:email].present? %>
+        <span class="form-error-message">
+          <strong><%= resource.errors.full_messages_for(:email).first %></strong>
+        </span>
+      <% end %>
+    </div>
+    <!-- パスワード入力 -->
+    <div class="mb-3">
+      <%= f.label :password, 'パスワード', class: 'form-label' %>
+      <span class="badge bg-danger"><ruby>必須<rt>ひっす</rt></ruby></span>
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', placeholder: "パスワードをいれてください" %>
+      <% if resource.errors.messages[:password].present? %>
+        <span class="form-error-message">
+          <strong><%= resource.errors.full_messages_for(:password).first %></strong>
+        </span>
+      <% end %>
+    </div>
+    <!-- 確認用パスワード入力 -->
+    <div class="mb-3">
+      <%= f.label :password_confirmation, class: 'form-label' do %>パスワード（<ruby>確認用<rt>かくにんよう</rt></ruby>）<% end %>
+      <span class="badge bg-danger"><ruby>必須<rt>ひっす</rt></ruby></span>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: "もういちどパスワードをいれてください" %>
+      <% if resource.errors.messages[:password_confirmation].present? %>
+        <span class="form-error-message">
+          <strong><%= resource.errors.full_messages_for(:password_confirmation).first %></strong>
+        </span>
+      <% end %>
+    </div>
+    <%= f.submit "サインアップ", class: 'btn btn-secondary' %>
+  <% end %>
+</main>
